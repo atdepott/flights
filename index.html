@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../bootstrap_v3/docs-assets/ico/favicon.png">
+
+    <title>Flight Time Viewer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="css/flightmap.css" rel="stylesheet">
+    <link href="css/customnavbar.css" rel="stylesheet">
+
+    <!-- Bootstrap-map-js -->
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.9/js/esri/css/esri.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapmap.css">
+
+    <!-- JQuery UI -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bootstrap_v3/docs-assets/js/html5shiv.js"></script>
+      <script src="../bootstrap_v3/docs-assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" id="homeLink">Flight Time Viewer</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a id="mapLink" href="#">Map</a></li>
+                    <li><a id="aboutLink" href="#about">About</a></li>
+                </ul>
+                <!--<ul class="nav navbar-nav navbar-right">
+                  <li><a id="aboutlink" href="#about">About</a></li>
+                  <li><a id="contactlink" href="#contact">Contact</a></li>
+                </ul>-->
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="mapDiv">
+                <div id="searchDiv" class="searchBox">
+                    <table>
+                        <tr>
+                            <td class="searchLabelCell">
+                                <label for="origin-input">Origin:</label>
+                            </td>
+                            <td class="searchBoxCell">
+                                <!--<input id="origin-input" class="searchInput"/>-->
+                                <select id="origin-input" class="searchInput"></select>
+                            </td>
+                            <td class="busyCell">
+                                <div id="busy" style="display:none"><img src="images/loader.gif" /></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="legendDiv" class="searchBox">
+                    <span class="legendTitle">Legend</span>
+                </div>
+
+                <div id="aboutDiv" style="display:none;">
+                    <h2>About</h2>
+                    <p>
+                        Flight data is from the Bureau of Transportation Statistics. Available <a href="http://www.transtats.bts.gov/Fields.asp?table_id=259">here</a>.
+                    </p>
+                    <p>
+                        Travel minutes per route are calculated based on average travel time between origin and destination during 2013.
+                        Routes with less than 100 flights/year were discarded.  The fastest possible routes between non-adjacent cities were
+                        calculated assuming a 60-minute layover in each intermediate location.
+                    </p>
+                    <p>
+                        Developed by Ashley DePottey (<a href="mailto:ashleydepottey@gmail.com?Subject=flightviewer">ashleydepottey@gmail.com</a>)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="popupDiv" />
+
+        <script type="text/javascript">
+            var package_path = location.pathname.substring(0, location.pathname.lastIndexOf('/')).replace("/\/[^/]+$/", "");
+            var dojoConfig = {
+                // The location.pathname.replace() logic below may look confusing but all its doing is
+                // enabling us to load the api from a CDN and load local modules from the correct location.
+                packages: [{
+                    name: "application",
+                    location: package_path + '/js'
+                }]
+            };
+        </script>
+        
+        <script src="http://js.arcgis.com/3.9compact"></script>
+        <script type="text/javascript" src="js/flightmap.js"></script>
+        
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="js/jquery.csv-0.71.min.js"></script>
+        
+        <!--<script src="js/fast-autocomplete.js"></script>-->
+</body>
+</html>
